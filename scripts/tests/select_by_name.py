@@ -2,8 +2,8 @@ from connect import connect_to_db
 
 
 query = """
-SELECT * FROM municipality_water_power (municipality_name, municipality_id, power_type, period_year, water_prod)
-VALUES (%s, %s, %s, %s, %s)
+SELECT * 
+FROM municipality_water_power
 WHERE municipality_name = %s
 """
 
@@ -16,17 +16,9 @@ def select_by_name(name: str):
 
     cursor.execute(
         query,
-        (
-            "name",
-            "id",
-            "power_type",
-            "period_year",
-            "water_prod",
-            name,
-        ),
+        (name,),
     )
 
+    result = cursor.fetchall()
 
-#    result = cursor.fetchall()
-
-# return result
+    return result
