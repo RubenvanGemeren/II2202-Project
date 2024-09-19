@@ -7,7 +7,6 @@ water_kpi = "N45927"
 solar_kpi = "N45952"
 
 
-
 def fetch_water_data(municipality_id):
     endpoint = f"{data_endpoint}{municipality_id}/kpi/{water_kpi}"
 
@@ -15,6 +14,7 @@ def fetch_water_data(municipality_id):
     data = response.json()
 
     return data
+
 
 def fetch_solar_data(municipality_id):
     endpoint = f"{data_endpoint}{municipality_id}/kpi/{solar_kpi}"
@@ -39,23 +39,27 @@ def fetch_power_data():
 
             period = value["period"]
             value = value["values"][0]["value"]
-            water_data.append({
-                "name": municipality_name,
-                "id": municipality_id,
-                "power_type": "water",
-                "period_year": period,
-                "water_prod": value
-            })
+            water_data.append(
+                {
+                    "name": municipality_name,
+                    "id": municipality_id,
+                    "power_type": "water",
+                    "period_year": period,
+                    "water_prod": value,
+                }
+            )
 
         solar = fetch_solar_data(municipality_id)
         for value in solar["values"]:
             period = value["period"]
             value = value["values"][0]["value"]
-            solar_data.append({
-                "name": municipality_name,
-                "id": municipality_id,
-                "power_type": "solar",
-                "period_year": period,
-                "solar_prod": value
-            })
+            solar_data.append(
+                {
+                    "name": municipality_name,
+                    "id": municipality_id,
+                    "power_type": "solar",
+                    "period_year": period,
+                    "solar_prod": value,
+                }
+            )
     return water_data, solar_data
