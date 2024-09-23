@@ -1,15 +1,21 @@
 from select_by_name import select_by_name
-from select_by_range import select_by_range
+from join_by_name import join_by_name
+from group_by_name import group_by_name
 
 import time
 
-start_time = time.time()
 
-# test = select_by_name("Stockholm")
-test = select_by_range("Kristianstad", "0.0", "100000.0")
+start = time.time()
 
-end_time = time.time()
+select_name = select_by_name("Stockholm")
 
-print(test)
+join_name = join_by_name()
 
-print(f"Execution time: {end_time - start_time} seconds")
+grp_name = group_by_name()
+
+
+print(grp_name)
+
+end = time.time()
+
+print(f"Time taken: {end - start}")
