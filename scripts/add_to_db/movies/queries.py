@@ -30,6 +30,12 @@ ON ratings.movieId = movies.movieId
 GROUP BY movies.title
 """
 
+genres_query = """
+SELECT *
+FROM movies
+WHERE genres @> ARRAY[%s]
+"""
+
 
 def select_by_id(id: str):
     con = connect_to_db()
@@ -69,6 +75,17 @@ def group_by_title():
     cursor = con.cursor()
 
     cursor.execute(group_query)
+
+    result = cursor.fetchall()
+
+    return result
+
+
+def select_by_genres(genres: list):
+    con = connect_to_db()
+    cursor = con.cursor()
+
+    cursor.execute(genres_query, (genres,))
 
     result = cursor.fetchall()
 
