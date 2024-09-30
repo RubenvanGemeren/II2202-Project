@@ -12,23 +12,22 @@ range_query = """
 SELECT *
 FROM ratings
 WHERE rating BETWEEN %s AND %s
+ORDER BY ratings.rating DESC
 """
 
 join_query = """
 SELECT *
-FROM movies
-JOIN ratings 
-ON movies.movieId = ratings.movieId
-WHERE ratings.rating BETWEEN %s AND %s
-ORDER BY ratings.rating DESC
+FROM ratings
+JOIN movies 
+ON ratings.movieId = movies.movieId
 """
 
 group_query = """
-SELECT movies.title, AVG(ratings.rating)
+SELECT ratings.movieId, movies.title, AVG(ratings.rating) as avg_rating
 FROM ratings
 JOIN movies
 ON ratings.movieId = movies.movieId
-GROUP BY movies.title
+GROUP BY ratings.movieId, movies.title
 """
 
 genres_query = """

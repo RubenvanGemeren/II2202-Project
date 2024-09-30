@@ -9,7 +9,7 @@ from queries import (
     select_by_genres,
 )
 
-from create_tables import connect_to_db
+from connect_postgres import connect_to_db
 
 from write import write_benchmark_to_file
 
@@ -25,7 +25,7 @@ def ratings_by_id():
     for _ in range(1000):
         execution_time, _ = select_by_id(cursor=cursor, id=random.choice(ids))
         benchmarks = np.append(benchmarks, execution_time)
-    write_benchmark_to_file("benchmarks/no_index/ratings_by_id.txt", benchmarks)
+    write_benchmark_to_file("benchmarks/brin_index/ratings_by_id.txt", benchmarks)
 
 
 def ratings_by_range():
@@ -38,7 +38,7 @@ def ratings_by_range():
         execution_time, _ = select_by_range(cursor=cursor, rating_min=2, rating_max=4)
         benchmarks = np.append(benchmarks, execution_time)
 
-    write_benchmark_to_file("benchmarks/no_index/ratings_by_range.txt", benchmarks)
+    write_benchmark_to_file("benchmarks/brin_index/ratings_by_range.txt", benchmarks)
 
 
 def join_movies_ratings():
@@ -55,7 +55,7 @@ def join_movies_ratings():
         )
         benchmarks = np.append(benchmarks, execution_time)
 
-    write_benchmark_to_file("benchmarks/no_index/join_movies_ratings.txt", benchmarks)
+    write_benchmark_to_file("benchmarks/brin_index/join_movies_ratings.txt", benchmarks)
 
 
 def join_and_group_by_title():
@@ -68,10 +68,10 @@ def join_and_group_by_title():
         execution_time, _ = group_by_title(cursor=cursor)
         benchmarks = np.append(benchmarks, execution_time)
 
-    write_benchmark_to_file("benchmarks/no_index/group_by_title.txt", benchmarks)
+    write_benchmark_to_file("benchmarks/brin_index/group_by_title.txt", benchmarks)
 
 
-def ratings_by_genres():
+def movies_by_genres():
     conn = connect_to_db()
     cursor = conn.cursor()
 
@@ -81,11 +81,11 @@ def ratings_by_genres():
         execution_time, _ = select_by_genres(cursor=cursor, genres=["Action", "Comedy"])
         benchmarks = np.append(benchmarks, execution_time)
 
-    write_benchmark_to_file("benchmarks/no_index/ratings_by_genres.txt", benchmarks)
+    write_benchmark_to_file("benchmarks/brin_index/movies_by_genres.txt", benchmarks)
 
 
 ratings_by_id()
 ratings_by_range()
 join_movies_ratings()
 join_and_group_by_title()
-ratings_by_genres()
+movies_by_genres()

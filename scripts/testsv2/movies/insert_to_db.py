@@ -1,6 +1,7 @@
 from read import read_csv
 import json
-from create_tables import connect_to_db
+from connect_postgres import connect_to_db
+
 
 movies_path = "../../../data/movies/movies_metadata.csv"
 ratings_path = "../../../data/movies/ratings.csv"
@@ -66,8 +67,7 @@ print(movies_modified.head())
 
 ratings_df = read_csv(ratings_path)
 ratings_df = ratings_df.drop(columns=["timestamp"])
-ratings_df = ratings_df.head(int(len(ratings_df) * 0.1))
-print(len(ratings_df))
+ratings_df = ratings_df.head(int(len(ratings_df) * 0.003))
 
 ratings_df = ratings_df[ratings_df["movieId"].isin(movies_modified["movieId"])]
 
@@ -87,6 +87,10 @@ for index, row in movies_modified.iterrows():
         ),
     )
 
+print("Movies inserted")
+
+ratings_inserted = 0
+
 for index, row in ratings_df.iterrows():
     cursor.execute(
         insert_ratings_query,
@@ -96,3 +100,6 @@ for index, row in ratings_df.iterrows():
             row["rating"],
         ),
     )
+    ratings_inserted += 1
+    if ratings_inserted % 100_000 == 0:
+        print(f"{ratings_inserted} ratings inserted")
