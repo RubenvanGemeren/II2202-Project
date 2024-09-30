@@ -16,11 +16,13 @@ def connect_to_db():
         )
         conn.autocommit = True
         print("Connection successful!")
-        return conn.cursor()
+        return conn
     except Exception as e:
         print(f"Error connecting to PostgreSQL: {e}")
 
 
-cursor = connect_to_db()
+conn = connect_to_db()
+cursor = conn.cursor()
+
 cursor.execute(create_movies_table)
 cursor.execute(create_ratings_table)

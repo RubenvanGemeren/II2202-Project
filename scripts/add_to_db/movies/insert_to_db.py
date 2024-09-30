@@ -73,7 +73,8 @@ ratings_df = ratings_df[ratings_df["movieId"].isin(movies_modified["movieId"])]
 
 print(ratings_df.head())
 
-cursor = connect_to_db()
+conn = connect_to_db()
+cursor = conn.cursor()
 
 for index, row in movies_modified.iterrows():
     cursor.execute(

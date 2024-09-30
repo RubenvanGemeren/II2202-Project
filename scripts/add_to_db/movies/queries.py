@@ -1,4 +1,5 @@
 from create_tables import connect_to_db
+import time
 
 
 id_query = """
@@ -18,12 +19,12 @@ SELECT *
 FROM movies
 JOIN ratings 
 ON movies.movieId = ratings.movieId
-WHERE avg_rating BETWEEN %s AND %s
-ORDER BY avg_rating DESC
+WHERE ratings.rating BETWEEN %s AND %s
+ORDER BY ratings.rating DESC
 """
 
 group_query = """
-SELECT *
+SELECT movies.title, AVG(ratings.rating)
 FROM ratings
 JOIN movies
 ON ratings.movieId = movies.movieId
@@ -33,60 +34,81 @@ GROUP BY movies.title
 genres_query = """
 SELECT *
 FROM movies
-WHERE genres @> ARRAY[%s]
+WHERE genres @> %s::varchar[]
 """
 
 
-def select_by_id(id: str):
-    con = connect_to_db()
-    cursor = con.cursor()
+def get_id_array(cursor):
+
+    cursor.execute("SELECT movieId FROM movies")
+
+    result = cursor.fetchall()
+
+    id_array = [row[0] for row in result]
+
+    return id_array
+
+
+def select_by_id(cursor, id: int):
+
+    start_time = time.time()
 
     cursor.execute(id_query, (id,))
 
-    result = cursor.fetchall()
-
-    return result
-
-
-def select_by_range(budget_min: int, budget_max: int):
-    con = connect_to_db()
-    cursor = con.cursor()
-
-    cursor.execute(range_query, (budget_min, budget_max))
+    execution_time = time.time() - start_time
 
     result = cursor.fetchall()
 
-    return result
+    return execution_time, result
 
 
-def join_movies_and_ratings(rating_min: float, rating_max: float):
-    con = connect_to_db()
-    cursor = con.cursor()
+def select_by_range(cursor, rating_min: float, rating_max: float):
+
+    start_time = time.time()
+
+    cursor.execute(range_query, (rating_min, rating_max))
+
+    execution_time = time.time() - start_time
+
+    result = cursor.fetchall()
+
+    return execution_time, result
+
+
+def join_movies_and_ratings(cursor, rating_min: float, rating_max: float):
+
+    start_time = time.time()
 
     cursor.execute(join_query, (rating_min, rating_max))
 
+    execution_time = time.time() - start_time
+
     result = cursor.fetchall()
 
-    return result
+    return execution_time, result
 
 
-def group_by_title():
-    con = connect_to_db()
-    cursor = con.cursor()
+def group_by_title(cursor):
+
+    start_time = time.time()
 
     cursor.execute(group_query)
 
+    execution_time = time.time() - start_time
+
     result = cursor.fetchall()
 
-    return result
+    return execution_time, result
 
 
-def select_by_genres(genres: list):
-    con = connect_to_db()
-    cursor = con.cursor()
+def select_by_genres(cursor, genres: list[str]):
+
+    start = time.time()
 
     cursor.execute(genres_query, (genres,))
 
+    execution_time = time.time() - start
+
     result = cursor.fetchall()
 
-    return result
+    return execution_time, result
