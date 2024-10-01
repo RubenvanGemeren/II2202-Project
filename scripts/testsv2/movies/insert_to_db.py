@@ -67,7 +67,7 @@ print(movies_modified.head())
 
 ratings_df = read_csv(ratings_path)
 ratings_df = ratings_df.drop(columns=["timestamp"])
-ratings_df = ratings_df.head(int(len(ratings_df) * 0.003))
+ratings_df = ratings_df.head(int(len(ratings_df) * 0.008))
 
 ratings_df = ratings_df[ratings_df["movieId"].isin(movies_modified["movieId"])]
 

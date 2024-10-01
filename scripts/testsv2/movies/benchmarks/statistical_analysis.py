@@ -44,4 +44,4 @@ for index in index_types:
         values = np.append(values, "variance: " + str(benchmarks.var()) + ",")
         values = np.append(values, "\n")
 
-write_benchmarks_to_file("benchmarks/statistical_analysis.txt", values)
+write_benchmarks_to_file("benchmarks/statistical_analysis_manual_select.txt", values)

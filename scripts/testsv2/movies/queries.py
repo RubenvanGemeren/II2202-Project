@@ -1,4 +1,3 @@
-from create_tables import connect_to_db
 import time
 
 
@@ -50,64 +49,67 @@ def get_id_array(cursor):
 
 def select_by_id(cursor, id: int):
 
-    start_time = time.time()
+    cursor.execute("BEGIN")
+    start_time = time.perf_counter()
 
     cursor.execute(id_query, (id,))
 
-    execution_time = time.time() - start_time
+    execution_time = time.perf_counter() - start_time
 
-    result = cursor.fetchall()
+    cursor.execute("COMMIT")
 
-    return execution_time, result
+    return execution_time
 
 
 def select_by_range(cursor, rating_min: float, rating_max: float):
 
-    start_time = time.time()
+    cursor.execute("BEGIN")
+    start_time = time.perf_counter()
 
     cursor.execute(range_query, (rating_min, rating_max))
 
-    execution_time = time.time() - start_time
+    execution_time = time.perf_counter() - start_time
 
-    result = cursor.fetchall()
-
-    return execution_time, result
+    return execution_time
 
 
 def join_movies_and_ratings(cursor):
 
-    start_time = time.time()
+    cursor.execute("BEGIN")
+    start_time = time.perf_counter()
 
     cursor.execute(join_query)
 
-    execution_time = time.time() - start_time
+    execution_time = time.perf_counter() - start_time
 
-    result = cursor.fetchall()
+    cursor.execute("COMMIT")
 
-    return execution_time, result
+    return execution_time
 
 
 def group_by_title(cursor):
 
-    start_time = time.time()
+    cursor.execute("BEGIN")
+    start_time = time.perf_counter()
 
     cursor.execute(group_query)
 
-    execution_time = time.time() - start_time
+    execution_time = time.perf_counter() - start_time
 
-    result = cursor.fetchall()
-
-    return execution_time, result
+    cursor.execute("COMMIT")
+    return execution_time
 
 
 def select_by_genres(cursor, genres: list[str]):
 
-    start = time.time()
+    cursor.execute("BEGIN")
+
+    start = time.perf_counter()
 
     cursor.execute(genres_query, (genres,))
 
-    execution_time = time.time() - start
+    execution_time = time.perf_counter() - start
 
-    result = cursor.fetchall()
+    cursor.execute("COMMIT")
 
-    return execution_time, result
+    return execution_time

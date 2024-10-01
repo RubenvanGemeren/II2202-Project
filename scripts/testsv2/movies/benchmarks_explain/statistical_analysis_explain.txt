@@ -1,0 +1,175 @@
+no_index ratings_by_id: 
+mean: 5.092746,
+median: 6.061,
+std. dev: 0.4047595477366779,
+variance: 0.16383029148400002,
+
+
+no_index ratings_by_range: 
+mean: 36.622550000000004,
+median: 37.018,
+std. dev: 1.6769152225142452,
+variance: 2.8120446635000005,
+
+
+no_index join_movies_ratings: 
+mean: 51.233567,
+median: 49.708,
+std. dev: 4.268579757426468,
+variance: 18.220773145511004,
+
+
+no_index group_by_title: 
+mean: 72.598393,
+median: 68.932,
+std. dev: 8.232788936110959,
+variance: 67.77881366655102,
+
+
+no_index movies_by_genres: 
+mean: 5.1917420000000005,
+median: 5.096,
+std. dev: 0.3985130906708085,
+variance: 0.15881268343600002,
+
+
+hash_index ratings_by_id: 
+mean: 0.015471,
+median: 0.007,
+std. dev: 0.044016850852826805,
+variance: 0.0019374831589999998,
+
+
+hash_index ratings_by_range: 
+mean: 36.062103,
+median: 36.715,
+std. dev: 0.4413042560309159,
+variance: 0.19474944639100014,
+
+
+hash_index join_movies_ratings: 
+mean: 49.193740000000005,
+median: 48.977,
+std. dev: 2.0177845698686467,
+variance: 4.0714545704,
+
+
+hash_index group_by_title: 
+mean: 69.14384999999999,
+median: 68.931,
+std. dev: 1.241641175017968,
+variance: 1.5416728075,
+
+
+hash_index movies_by_genres: 
+mean: 5.287534,
+median: 5.219,
+std. dev: 0.6245608752107356,
+variance: 0.390076286844,
+
+
+b_tree_index ratings_by_id: 
+mean: 0.011244000000000002,
+median: 0.007,
+std. dev: 0.02323666206665665,
+variance: 0.0005399424640000002,
+
+
+b_tree_index ratings_by_range: 
+mean: 14.417865999999998,
+median: 14.231,
+std. dev: 0.39029327184054813,
+variance: 0.15232883804400002,
+
+
+b_tree_index join_movies_ratings: 
+mean: 48.492054,
+median: 48.117,
+std. dev: 2.488184131667912,
+variance: 6.191060273084002,
+
+
+b_tree_index group_by_title: 
+mean: 106.84674100000001,
+median: 106.895,
+std. dev: 1.390303009390039,
+variance: 1.932942457918999,
+
+
+b_tree_index movies_by_genres: 
+mean: 5.29521,
+median: 5.104,
+std. dev: 0.7865357422902026,
+variance: 0.6186384739,
+
+
+gin_index ratings_by_id: 
+mean: 4.732387000000001,
+median: 4.624,
+std. dev: 0.3511957847568789,
+variance: 0.12333847923100003,
+
+
+gin_index ratings_by_range: 
+mean: 35.398152,
+median: 35.293,
+std. dev: 0.49181109879302226,
+variance: 0.2418781568959999,
+
+
+gin_index join_movies_ratings: 
+mean: 49.096049,
+median: 49.555,
+std. dev: 1.3935703766222212,
+variance: 1.9420383945989994,
+
+
+gin_index group_by_title: 
+mean: 70.76178,
+median: 68.79,
+std. dev: 14.076623035998372,
+variance: 198.15131609760002,
+
+
+gin_index movies_by_genres: 
+mean: 0.724257,
+median: 0.773,
+std. dev: 0.07823458922369311,
+variance: 0.006120650950999999,
+
+
+brin_index ratings_by_id: 
+mean: 5.156995000000001,
+median: 4.664,
+std. dev: 1.3557996839411786,
+variance: 1.8381927829749998,
+
+
+brin_index ratings_by_range: 
+mean: 35.843298000000004,
+median: 35.21,
+std. dev: 1.9430129415925155,
+variance: 3.7752992911959997,
+
+
+brin_index join_movies_ratings: 
+mean: 48.769293,
+median: 49.09,
+std. dev: 0.6192773959632307,
+variance: 0.3835044931510001,
+
+
+brin_index group_by_title: 
+mean: 69.663312,
+median: 69.181,
+std. dev: 7.685566345342156,
+variance: 59.067930048655995,
+
+
+brin_index movies_by_genres: 
+mean: 5.3015550000000005,
+median: 5.134,
+std. dev: 0.7850521504811002,
+variance: 0.616306878975,
+
+

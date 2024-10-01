@@ -35,8 +35,8 @@ def connect_to_db():
         print(f"Error connecting to PostgreSQL: {e}")
 
 
-# conn = connect_to_db()
-# cursor = conn.cursor()
+conn = connect_to_db()
+cursor = conn.cursor()
 
-# cursor.execute(create_movies_table)
-# cursor.execute(create_ratings_table)
+cursor.execute(create_movies_table)
+cursor.execute(create_ratings_table)
