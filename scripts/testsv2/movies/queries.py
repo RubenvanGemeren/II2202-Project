@@ -74,11 +74,11 @@ def select_by_range(cursor, rating_min: float, rating_max: float):
     return execution_time, result
 
 
-def join_movies_and_ratings(cursor, rating_min: float, rating_max: float):
+def join_movies_and_ratings(cursor):
 
     start_time = time.time()
 
-    cursor.execute(join_query, (rating_min, rating_max))
+    cursor.execute(join_query)
 
     execution_time = time.time() - start_time
 

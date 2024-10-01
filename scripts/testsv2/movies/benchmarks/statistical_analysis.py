@@ -30,6 +30,7 @@ def write_benchmarks_to_file(file_path: str, benchmarks: list):
 
 values = np.array([])
 
+
 for index in index_types:
     for query in query_types:
         file_path = f"benchmarks/{index}/{query}.txt"
