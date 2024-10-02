@@ -26,7 +26,7 @@ def ratings_by_id():
         execution_time = select_by_id(cursor=cursor, id=random.choice(ids))
         benchmarks = np.append(benchmarks, execution_time)
     write_benchmark_to_file(
-        "benchmarks_explain/brin_index/ratings_by_id.txt", benchmarks
+        "benchmarks_explain/gin_index/ratings_by_id.txt", benchmarks
     )
 
 
@@ -41,7 +41,7 @@ def ratings_by_range():
         benchmarks = np.append(benchmarks, execution_time)
 
     write_benchmark_to_file(
-        "benchmarks_explain/brin_index/ratings_by_range.txt", benchmarks
+        "benchmarks_explain/gin_index/ratings_by_range.txt", benchmarks
     )
 
 
@@ -58,7 +58,7 @@ def join_movies_ratings():
         benchmarks = np.append(benchmarks, execution_time)
 
     write_benchmark_to_file(
-        "benchmarks_explain/brin_index/join_movies_ratings.txt", benchmarks
+        "benchmarks_explain/gin_index/join_movies_ratings.txt", benchmarks
     )
 
 
@@ -73,7 +73,7 @@ def join_and_group_by_title():
         benchmarks = np.append(benchmarks, execution_time)
 
     write_benchmark_to_file(
-        "benchmarks_explain/brin_index/group_by_title.txt", benchmarks
+        "benchmarks_explain/gin_index/group_by_title.txt", benchmarks
     )
 
 
@@ -88,12 +88,12 @@ def movies_by_genres():
         benchmarks = np.append(benchmarks, execution_time)
 
     write_benchmark_to_file(
-        "benchmarks_explain/brin_index/movies_by_genres.txt", benchmarks
+        "benchmarks_explain/gin_index/movies_by_genres.txt", benchmarks
     )
 
 
-# ratings_by_id()
-# ratings_by_range()
-# join_movies_ratings()
-# join_and_group_by_title()
+ratings_by_id()
+ratings_by_range()
+join_movies_ratings()
+join_and_group_by_title()
 movies_by_genres()

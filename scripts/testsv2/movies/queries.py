@@ -19,6 +19,7 @@ SELECT *
 FROM ratings
 JOIN movies 
 ON ratings.movieId = movies.movieId
+WHERE ratings.rating between 2 and 5
 """
 
 group_query = """
