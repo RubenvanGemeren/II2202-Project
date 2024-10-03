@@ -1,5 +1,5 @@
 import numpy as np
-import numpy as np
+import os
 
 index_types = [
     "no_index",
@@ -10,20 +10,30 @@ index_types = [
 ]
 
 query_types = [
-    "ratings_by_id",
-    "ratings_by_range",
-    "join_movies_ratings",
-    "group_by_title",
-    "movies_by_genres",
+    "game_lineups_by_id",
+    "game_lineups_by_range",
+    "group_by_season",
+    "join_game_lineups_players",
+    "players_by_names",
 ]
 
 
 def read_benchmark_from_file(file_path: str) -> np.array:
-    return np.loadtxt(file_path)
+    # Ensure the directory exists
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    return np.loadtxt(os.path.join(current_dir, file_path))
 
 
 def write_benchmarks_to_file(file_path: str, benchmarks: list):
-    with open(file_path, "w") as f:
+    # Ensure the directory exists
+    # os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+
+    with open(os.path.join(current_dir, file_path), "w") as f:
         for item in benchmarks:
             f.write("%s\n" % item)
 
@@ -32,7 +42,7 @@ values = np.array([])
 
 for index in index_types:
     for query in query_types:
-        file_path = f"benchmarks/{index}/{query}.txt"
+        file_path = f"{index}/{query}.txt"
         benchmarks = read_benchmark_from_file(file_path)
         values = np.append(values, f"{index} {query}: ")
         values = np.append(values, "mean: " + str(benchmarks.mean()) + ",")
@@ -43,4 +53,4 @@ for index in index_types:
         values = np.append(values, "variance: " + str(benchmarks.var()) + ",")
         values = np.append(values, "\n")
 
-write_benchmarks_to_file("benchmarks/statistical_analysis.txt", values)
+write_benchmarks_to_file("statistical_analysis.txt", values)

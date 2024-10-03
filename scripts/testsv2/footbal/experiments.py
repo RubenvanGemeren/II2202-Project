@@ -26,7 +26,7 @@ def ratings_by_id():
         print(item)
         execution_time, _ = select_by_id(cursor=cursor, id=random.choice(ids))
         benchmarks = np.append(benchmarks, execution_time)
-    write_benchmark_to_file("benchmarks/brin_index/game_lineups_by_id.txt", benchmarks)
+    write_benchmark_to_file("benchmarks/gin_index/game_lineups_by_id.txt", benchmarks)
 
 
 def ratings_by_range():
@@ -40,7 +40,7 @@ def ratings_by_range():
         execution_time, _ = select_by_range(cursor=cursor, date_min="2013-07-27", date_max="2016-01-01")
         benchmarks = np.append(benchmarks, execution_time)
 
-    write_benchmark_to_file("benchmarks/brin_index/game_lineups_by_range.txt", benchmarks)
+    write_benchmark_to_file("benchmarks/gin_index/game_lineups_by_range.txt", benchmarks)
 
 
 def join_game_lineups_players():
@@ -56,7 +56,7 @@ def join_game_lineups_players():
         )
         benchmarks = np.append(benchmarks, execution_time)
 
-    write_benchmark_to_file("benchmarks/brin_index/join_game_lineups_players.txt", benchmarks)
+    write_benchmark_to_file("benchmarks/gin_index/join_game_lineups_players.txt", benchmarks)
 
 
 def join_and_group_by_season():
@@ -70,7 +70,7 @@ def join_and_group_by_season():
         execution_time, _ = group_by_season(cursor=cursor)
         benchmarks = np.append(benchmarks, execution_time)
 
-    write_benchmark_to_file("benchmarks/brin_index/group_by_season.txt", benchmarks)
+    write_benchmark_to_file("benchmarks/gin_index/group_by_season.txt", benchmarks)
 
 
 def players_by_names():
@@ -84,7 +84,7 @@ def players_by_names():
         execution_time, _ = select_by_name(cursor=cursor, name="Marc")
         benchmarks = np.append(benchmarks, execution_time)
 
-    write_benchmark_to_file("benchmarks/brin_index/players_by_names.txt", benchmarks)
+    write_benchmark_to_file("benchmarks/gin_index/players_by_names.txt", benchmarks)
 
 
 ratings_by_id()
